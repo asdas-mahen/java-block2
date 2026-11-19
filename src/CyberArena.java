@@ -40,7 +40,6 @@ public final class CyberArena {
   public static void main(String[] args) {
     VRGlasses vr = new VRGlasses("VR-очки клуба", 25.00);
 
-    // Сокращенный конструктор выбирает Standard Zone, полный задает тариф явно.
     GamingSeat standardSeat = new GamingSeat("Место 1", 1200.00);
     GamingSeat vipSeat = new GamingSeat("Место 2", 1200.00, "VIP Zone");
     GamingSeat bootcampSeat = new GamingSeat("Место 3", 1200.00, "BootCamp");
@@ -49,7 +48,6 @@ public final class CyberArena {
     System.out.println("Компьютерный клуб: игровое место и аренда VR-очков");
     System.out.printf(Locale.ROOT, "Цена VR за минуту: %.2f руб.%n%n", vr.getPricePerMinute());
 
-    // Последовательная демонстрация всех трех перегруженных методов.
     double standardPrice = standardSeat.calculateFinalPrice();
     printOrder(standardSeat, "без VR", standardPrice);
     registerPayment(standardPrice);

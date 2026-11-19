@@ -83,7 +83,6 @@ public final class GamingSeat {
     return finalPrice;
   }
 
-  // Имена методов из таблицы варианта 27. Расчет выполняют перегрузки выше.
   public double addVR(VRGlasses vr) {
     return calculateFinalPrice(vr);
   }
