@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="809" viewBox="0 0 1080 809" role="img" aria-labelledby="title desc">
+  <title id="title">Диаграмма классов компьютерного клуба</title>
+  <desc id="desc">UML. CyberArena зависит от GamingSeat и VRGlasses. GamingSeat агрегирует от нуля до одной опции VRGlasses. Одна опция может использоваться несколькими местами.</desc>
+  <style>
+    text { fill: #17252d; font-family: 'Segoe UI', Arial, sans-serif; }
+    .heading { font-weight: 700; font-size: 28px; }
+    .sub { font-size: 15px; fill: #485d67; }
+    .name { font-size: 21px; font-weight: 700; }
+    .role { font-size: 13px; fill: #324f63; }
+    .code { font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 14px; }
+    .legend { font-size: 15px; }
+    .edge { fill: none; stroke: #263e50; stroke-width: 1.8; }
+  </style>
+  <rect width="1080" height="809" fill="white"/>
+  <text x="18" y="35" class="heading">Диаграмма классов компьютерного клуба</text>
+  <text x="18" y="60" class="sub">Блок 2, часть 1 · Вариант 27</text>
+  <g aria-label="GamingSeat">
+  <rect x="18" y="79" width="504" height="633" fill="white" stroke="#375365" stroke-width="1.6"/>
+  <rect x="19" y="80" width="502" height="59" fill="#e9f0f4"/>
+  <text x="31" y="106" class="name">GamingSeat</text>
+  <text x="31" y="127" class="role">Игровое место · final</text>
+  <path d="M 18 139 L 522 139" fill="none" stroke="#375365" stroke-width="1.25"/>
+  <text x="30" y="161" class="code">- {static} DEFAULT_ZONE : String {readOnly}</text>
+  <text x="30" y="182" class="code">- {static} STANDARD_MULTIPLIER : double {readOnly}</text>
+  <text x="30" y="203" class="code">- {static} VIP_MULTIPLIER : double {readOnly}</text>
+  <text x="30" y="224" class="code">- {static} BOOTCAMP_MULTIPLIER : double {readOnly}</text>
+  <text x="30" y="245" class="code">- {static} DEFAULT_VR_MINUTES : int {readOnly}</text>
+  <text x="30" y="266" class="code">- name : String {readOnly}</text>
+  <text x="30" y="287" class="code">- basePrice : double</text>
+  <text x="30" y="308" class="code">- zone : String</text>
+  <text x="30" y="329" class="code">- appliedOption : VRGlasses [0..1]</text>
+  <path d="M 18 341 L 522 341" fill="none" stroke="#375365" stroke-width="1.25"/>
+  <text x="30" y="363" class="code">+ GamingSeat(name : String, basePrice : double)</text>
+  <text x="30" y="384" class="code">+ GamingSeat(name : String, basePrice : double,</text>
+  <text x="48" y="405" class="code">zone : String)</text>
+  <text x="30" y="426" class="code">+ getName() : String</text>
+  <text x="30" y="447" class="code">+ getBasePrice() : double</text>
+  <text x="30" y="468" class="code">+ getZone() : String</text>
+  <text x="30" y="489" class="code">+ getAppliedOption() : VRGlasses</text>
+  <text x="30" y="510" class="code">+ setBasePrice(basePrice : double) : void</text>
+  <text x="30" y="531" class="code">+ setZone(zone : String) : void</text>
+  <text x="30" y="552" class="code">+ calculateFinalPrice() : double</text>
+  <text x="30" y="573" class="code">+ calculateFinalPrice(option : VRGlasses) : double</text>
+  <text x="30" y="594" class="code">+ calculateFinalPrice(option : VRGlasses,</text>
+  <text x="48" y="615" class="code">minutes : int) : double</text>
+  <text x="30" y="636" class="code">+ addVR(vr : VRGlasses) : double</text>
+  <text x="30" y="657" class="code">+ addVR(vr : VRGlasses, minutes : int) : double</text>
+  <text x="30" y="678" class="code">- {static} getZoneMultiplier(zone : String) : double</text>
+  <text x="30" y="699" class="code">- {static} toMoney(price : BigDecimal) : double</text>
+  </g>
+  <g aria-label="CyberArena">
+  <rect x="628" y="79" width="434" height="297" fill="white" stroke="#375365" stroke-width="1.6"/>
+  <rect x="629" y="80" width="432" height="59" fill="#e9f0f4"/>
+  <text x="641" y="106" class="name">CyberArena</text>
+  <text x="641" y="127" class="role">Учёт оплат и точка входа · final</text>
+  <path d="M 628 139 L 1062 139" fill="none" stroke="#375365" stroke-width="1.25"/>
+  <text x="640" y="161" class="code">- {static} totalOrdersCount : int</text>
+  <text x="640" y="182" class="code">- {static} totalRevenue : double</text>
+  <path d="M 628 194 L 1062 194" fill="none" stroke="#375365" stroke-width="1.25"/>
+  <text x="640" y="216" class="code">- CyberArena()</text>
+  <text x="640" y="237" class="code">+ {static} getTotalOrdersCount() : int</text>
+  <text x="640" y="258" class="code">+ {static} getTotalRevenue() : double</text>
+  <text x="640" y="279" class="code">+ {static} registerPayment(amount : double) : void</text>
+  <text x="640" y="300" class="code">+ {static} printGlobalStats() : void</text>
+  <text x="640" y="321" class="code">+ {static} main(args : String[]) : void</text>
+  <text x="640" y="342" class="code">- {static} printOrder(seat : GamingSeat,</text>
+  <text x="658" y="363" class="code">details : String, price : double) : void</text>
+  </g>
+  <g aria-label="VRGlasses">
+  <rect x="628" y="477" width="434" height="213" fill="white" stroke="#375365" stroke-width="1.6"/>
+  <rect x="629" y="478" width="432" height="59" fill="#e9f0f4"/>
+  <text x="641" y="504" class="name">VRGlasses</text>
+  <text x="641" y="525" class="role">Опция аренды VR-очков · final</text>
+  <path d="M 628 537 L 1062 537" fill="none" stroke="#375365" stroke-width="1.25"/>
+  <text x="640" y="559" class="code">- name : String {readOnly}</text>
+  <text x="640" y="580" class="code">- pricePerMinute : double</text>
+  <path d="M 628 592 L 1062 592" fill="none" stroke="#375365" stroke-width="1.25"/>
+  <text x="640" y="614" class="code">+ VRGlasses(name : String, pricePerMinute : double)</text>
+  <text x="640" y="635" class="code">+ getName() : String</text>
+  <text x="640" y="656" class="code">+ getPricePerMinute() : double</text>
+  <text x="640" y="677" class="code">+ setPricePerMinute(pricePerMinute : double) : void</text>
+  </g>
+  <g aria-label="Зависимости управляющего класса">
+    <path d="M628 237 H523 M845 376 V477" class="edge" stroke-dasharray="6 4"/>
+    <path d="m533 231 -10 6 10 6 M839 466 l6 10 6 -10" class="edge"/>
+  </g>
+  <g aria-label="Игровое место агрегирует необязательную опцию VR">
+    <path d="M522 571 l11 -7 11 7 -11 7 Z" fill="white" stroke="#263e50" stroke-width="1.8"/>
+    <path d="M544 571 H627 M618 565 l9 6 -9 6" class="edge"/>
+    <text x="530" y="556" class="role">0..*</text>
+    <text x="601" y="556" class="role">0..1</text>
+  </g>
+  <path d="M 18 745 L 1062 745" fill="none" stroke="#375365" stroke-width="1.25"/>
+  <text x="18" y="770" class="legend">+  public     −  private     {static}  член класса     {readOnly}  поле final</text>
+  <text x="18" y="793" class="legend">Пустой ромб обозначает агрегацию. Пунктирная стрелка направлена от класса, который использует другой класс.</text>
+</svg>
