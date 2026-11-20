@@ -1,13 +1,25 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Locale;
+import java.util.Objects;
 
-/** Учет оплаченных заказов компьютерного клуба и демонстрация варианта 27. */
+/** Принимает оплату и передаёт чек выбранной службе уведомлений. */
 public final class CyberArena {
   private static int totalOrdersCount = 0;
   private static double totalRevenue = 0.0;
+  private final NotificationService notificationService;
 
-  private CyberArena() {}
+  public CyberArena(NotificationService notificationService) {
+    this.notificationService = Objects.requireNonNull(notificationService, "Нужна служба уведомлений.");
+  }
+
+  public void processPayment(GamingSeat seat, String contact, double finalPrice) {
+    Objects.requireNonNull(seat, "Нужно указать заказ.");
+    double paid = registerPayment(finalPrice);
+    String receipt = String.format(Locale.ROOT, "Заказ «%s» оплачен. Сумма: %.2f руб.",
+        seat.getName(), paid);
+    notificationService.sendNotification(receipt, contact);
+  }
 
   public static int getTotalOrdersCount() {
     return totalOrdersCount;
@@ -18,7 +30,7 @@ public final class CyberArena {
   }
 
   /** Фиксирует один оплаченный заказ; обычный расчет цены статистику не меняет. */
-  public static void registerPayment(double amount) {
+  private static double registerPayment(double amount) {
     if (!Double.isFinite(amount) || amount < 0) {
       throw new IllegalArgumentException("Сумма оплаты должна быть конечной и неотрицательной.");
     }
@@ -29,6 +41,7 @@ public final class CyberArena {
     }
     totalRevenue = updatedRevenue;
     totalOrdersCount++;
+    return payment.doubleValue();
   }
 
   public static void printGlobalStats() {
@@ -37,38 +50,4 @@ public final class CyberArena {
     System.out.printf(Locale.ROOT, "Общая выручка: %.2f руб.%n", getTotalRevenue());
   }
 
-  public static void main(String[] args) {
-    VRGlasses vr = new VRGlasses("VR-очки клуба", 25.00);
-
-    GamingSeat standardSeat = new GamingSeat("Место 1", 1200.00);
-    GamingSeat vipSeat = new GamingSeat("Место 2", 1200.00, "VIP Zone");
-    GamingSeat bootcampSeat = new GamingSeat("Место 3", 1200.00, "BootCamp");
-
-    System.out.println("Лабораторная работа. Блок 2, часть 1. Вариант 27");
-    System.out.println("Компьютерный клуб: игровое место и аренда VR-очков");
-    System.out.printf(Locale.ROOT, "Цена VR за минуту: %.2f руб.%n%n", vr.getPricePerMinute());
-
-    double standardPrice = standardSeat.calculateFinalPrice();
-    printOrder(standardSeat, "без VR", standardPrice);
-    registerPayment(standardPrice);
-
-    double vipPrice = vipSeat.calculateFinalPrice(vr);
-    printOrder(vipSeat, "VR на 1 минуту", vipPrice);
-    registerPayment(vipPrice);
-
-    double bootcampPrice = bootcampSeat.calculateFinalPrice(vr, 30);
-    printOrder(bootcampSeat, "VR на 30 минут", bootcampPrice);
-    registerPayment(bootcampPrice);
-
-    System.out.println("\nМетоды addVR из таблицы варианта (повторный расчет без оплаты):");
-    System.out.printf(Locale.ROOT, "addVR(vr): %.2f руб.%n", vipSeat.addVR(vr));
-    System.out.printf(Locale.ROOT, "addVR(vr, 30): %.2f руб.%n", bootcampSeat.addVR(vr, 30));
-
-    printGlobalStats();
-  }
-
-  private static void printOrder(GamingSeat seat, String details, double price) {
-    System.out.printf(Locale.ROOT, "%s | %s | %s | %.2f руб.%n",
-        seat.getName(), seat.getZone(), details, price);
-  }
 }
