@@ -1,3 +1,11 @@
+import billing.CyberArena;
+import model.CorporateGamingSeat;
+import model.GamingSeat;
+import model.UserGamingSeat;
+import model.VRGlasses;
+import service.impl.EmailNotification;
+import service.impl.SmsNotification;
+
 /** Демонстрация двух типов заказов компьютерного клуба. */
 public final class Main {
   private Main() {}

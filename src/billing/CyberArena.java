@@ -1,7 +1,11 @@
+package billing;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Locale;
 import java.util.Objects;
+import model.GamingSeat;
+import service.NotificationService;
 
 /** Принимает оплату и передаёт чек выбранной службе уведомлений. */
 public final class CyberArena {

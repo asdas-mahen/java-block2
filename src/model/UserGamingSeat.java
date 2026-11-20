@@ -1,3 +1,5 @@
+package model;
+
 /** Бронирование одного места частным клиентом компьютерного клуба. */
 public final class UserGamingSeat extends GamingSeat {
   public UserGamingSeat(String name, double basePrice) {

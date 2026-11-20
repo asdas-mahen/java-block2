@@ -1,8 +1,16 @@
+import billing.CyberArena;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import model.CorporateGamingSeat;
+import model.GamingSeat;
+import model.UserGamingSeat;
+import model.VRGlasses;
+import service.NotificationService;
+import service.impl.EmailNotification;
+import service.impl.SmsNotification;
 
 /** Проверки расчётов, уведомлений и учёта оплат для варианта 27. */
 public final class Lab27Test {

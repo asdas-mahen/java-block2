@@ -1,3 +1,5 @@
+package model;
+
 /** Групповая бронь игровых мест организацией. */
 public final class CorporateGamingSeat extends GamingSeat {
   private final int seatCount;
